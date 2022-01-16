@@ -14,15 +14,20 @@ Node* InitNode(int data);   //Function create a node
 Node* InsertNode(Node* root, int data); //Function add node in binary tree
 Node* SearchNode(Node* root, int data); //Function search data in binary tree
 Node* FindMinimum(Node* root);  //Function find data minimum in binary tree
+Node* FindMaximum(Node* root);  //Function find data maximum in binary tree
 
 Node* DeleteNode(Node* root, int data); //Function delete node with data input in binary tree
 
+//Function show all data node in binary tree
 void DisplayLNR(const Node* root);
 void DisplayRNL(const Node* root);
 void DisplayNRL(const Node* root);
 void DisplayNLR(const Node* root);
 void DisplayLRN(const Node* root);
 void DisplayRLN(const Node* root);
+
+//Free data node in binary tree
+void FreeTree(Node* root);
 
 int main()
 {
@@ -37,26 +42,9 @@ int main()
     InsertNode(root,7);
     InsertNode(root,10);
     
-    printf("browser left node right:\n");
     DisplayLNR(root);
     printf("\n");
-    printf("browser right node left:\n");
-    DisplayRNL(root);
-    printf("\n");
-    printf("browser node right left:\n");
-    DisplayNRL(root);
-    printf("\n");
-    printf("browser node left right:\n");
-    DisplayNLR(root);
-    printf("\n");
-    printf("browser left right node:\n");
-    DisplayLRN(root);
-    printf("\n");
-    printf("browser right left node:\n");
-    DisplayRLN(root);
-    printf("\n");
-    
-    
+        
     return 0;
 }
 
@@ -102,6 +90,14 @@ Node* FindMinimum(Node* root)
     return root;
 }
 
+Node* FindMaximum(Node* root)
+{
+    if(root == NULL)
+        return NULL;
+    else if(root->pRight != NULL)
+        return FindMaximum(root->pRight);
+    return root;
+}
 
 Node* DeleteNode(Node* root, int data)
 {
@@ -192,5 +188,11 @@ void DisplayRLN(const Node* root)
         DisplayRLN(root->pLeft);
         printf(" %d ",root->data);
     }
+}
+
+
+void FreeTree(Node* root)
+{
+    
 }
 
